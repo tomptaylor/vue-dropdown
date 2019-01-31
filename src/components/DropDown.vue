@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import shared from "./shared";
 export default {
   name: "DropDown",
   props: ["dropDownName"],
@@ -16,6 +17,9 @@ export default {
       selectedRow: "",
       rows: []
     };
+  },
+  mounted: function() {
+    this.foo = shared.foo; // now you can call this.foo() (in your functions/template)
   },
   created() {
     var url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9";
@@ -27,6 +31,7 @@ export default {
     //     url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9";
     // 		break;
     // };
+
     fetch(url, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
