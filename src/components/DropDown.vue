@@ -18,22 +18,8 @@ export default {
       rows: []
     };
   },
-  mounted: function() {
-    this.foo = shared.foo; // now you can call this.foo() (in your functions/template)
-  },
   created() {
-    // var url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9/2";
-    //  var url = '';
     this.url = shared.getURL(this.$props.dropDownName);
-    // console.log(this.$props.dropDownName);
-    //     switch (this.$props.dropDownName) {
-    // 	case 'State ':
-    //      url = "https://api.jsonbin.io/b/5c3436e87b31f426f8533a5c";
-    // 		break;
-    //     url = "https://api.jsonbin.io/b/5c514fa04c4430170a939bd9";
-    // 		break;
-    // };
-
     fetch(this.url, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -43,13 +29,7 @@ export default {
     })
       .then(response => response.json())
       .then(json => {
-        //  console.log(json);
-        for (let i in json.DATA) {
-          console.log(json.DATA[i][1]);
-          this.rows.push({ name: json.DATA[i][1], key: json.DATA[i][0] });
-        }
-        // console.log(this.rows);
-        // this.states = json;
+        this.rows = shared.mapDropDown(this.$props.dropDownName, json);
       });
   }
 };
