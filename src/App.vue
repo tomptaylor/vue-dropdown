@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img width="25%" src="./assets/logo.png" /> <HelloWorld />
-    <DropDown dropDownName="State" /> <DropDown dropDownName="District" />
+    <DropDown dropDownName="State" />
   </div>
 </template>
 
@@ -21,22 +21,9 @@ export default {
     DropDown
   },
   created() {
-    fetch("https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a", {
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "secret-key":
-          "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        for (let i in json) {
-          fruits.indexOf("Apple");
-          if (this.arrDistricts.indexOf(json[i].district) === -1) {
-            this.arrDistricts.push(json[i].district);
-          }
-        }
-      });
+    this.$store.dispatch("loadData");
+    //this.items = this.$store.state.posts;
+    console.log("in App.created(): " + this.$store.state.arrDistricts);
   }
 };
 </script>
