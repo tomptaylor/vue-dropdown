@@ -35,11 +35,12 @@ const store = new Vuex.Store({
       })
         .then(response => response.json())
         .then(json => {
-          for (let i in json) {
-            if (this.arrDistricts.indexOf(json[i].district) === -1) {
-              this.arrDistricts.push(json[i].district);
-            }
-          }
+          console.log(json);
+          // for (let i in json) {
+          //   if (this.arrDistricts.indexOf(json[i].district) === -1) {
+          //     this.arrDistricts.push(json[i].district);
+          //   }
+          //}
         });
     },
 
