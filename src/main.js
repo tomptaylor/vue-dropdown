@@ -36,22 +36,15 @@ const store = new Vuex.Store({
         .then(response => response.json())
         .then(json => {
           console.log(json);
-          // for (let i in json) {
-          //   if (this.arrDistricts.indexOf(json[i].district) === -1) {
-          //     this.arrDistricts.push(json[i].district);
-          //   }
-          //}
+          for (let i in json) {
+            console.log(i + json[i].district);
+            if (store.state.arrDistricts.indexOf(json[i].district) === -1) {
+              store.state.arrDistricts.push(json[i].district);
+            }
+          }
+          console.log(store.state.arrDistricts);
         });
     },
-
-    //   Axios.get("https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a").then(
-    //     response => {
-    //       console.log(response.data, this);
-    //       commit("updatePosts", response.data);
-    //       commit("changeLoadingState", false);
-    //     }
-    //   );
-    // },
 
     GET_TODO: async (context, payload) => {
       let { data } = await Axios.get(

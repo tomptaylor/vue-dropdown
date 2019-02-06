@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import Axios from "axios";
 
 Vue.use(Vuex);
-var tom = '';
 const store = new Vuex.Store({
   state: {
     arrDistricts: [],
@@ -15,28 +14,18 @@ const store = new Vuex.Store({
   },
   actions: {
     loadData({ commit }) {
-    fetch("https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a", {
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "secret-key":
-          "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json);
-      });
-  }
-
-      // Axios.get("https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a").then(
-      //   response => {
-      //     console.log(response.data, this);
-      //     commit("updatePosts", response.data);
-      //     commit("changeLoadingState", false);
-      //   }
-      // );
+      fetch("https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a", {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "secret-key":
+            "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
+        }
+      })
+        .then(response => response.json())
+        .then(json => {
+          console.log(json);
+        });
     },
-
     GET_TODO: async (context, payload) => {
       let { data } = await Axios.get(
         "https://api.jsonbin.io/b/5c3ec57f05d34b26f20aa54a"
