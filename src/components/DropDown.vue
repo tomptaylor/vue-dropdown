@@ -1,6 +1,6 @@
 <template>
   <div class="dd">
-    <label>{{ dropDownName }}</label>
+    <label>{{ dropDownName }} {{ theurl }}</label>
     <select v-model="selectedRow">
       <option v-for="row in rows" :value="row.key">{{ row.name }}</option>
     </select>
@@ -15,22 +15,36 @@ export default {
   data() {
     return {
       selectedRow: "",
-      rows: []
+      rows: [],
+      theurl: "",
+      results: []
     };
   },
-  created() {
-    this.url = shared.getURL(this.$props.dropDownName);
-    fetch(this.url, {
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        "secret-key":
-          "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        this.rows = shared.mapDropDown(this.$props.dropDownName, json);
-      });
+  async created() {
+    // this.rows = await shared.getURL(this.$props.dropDownName);
+    //this.theurl = this.url;
+    //console.log(this.url);
+    this.rows = await shared.getIT(this.$props.dropDownName);
+    //this.rows = this.results;
+    //console.log("results");
+    //console.log(this.rows);
+    // console.log(this.$props.dropDownName);
+    // this.rows = await shared.mapDropDown(
+    //   this.$props.dropDownName,
+    //   this.results
+    // );
+
+    // fetch(this.url, {
+    //   headers: {
+    //     "Content-Type": "application/json; charset=utf-8",
+    //     "secret-key":
+    //       "$2a$10$036UXxSL9oiSYBbeDqdNd.frX7BvsGTNNDekEX2iUKfHj7U1p1k6G"
+    //   }
+    // })
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     this.rows = shared.mapDropDown(this.$props.dropDownName, json);
+    //   });
   }
 };
 </script>
